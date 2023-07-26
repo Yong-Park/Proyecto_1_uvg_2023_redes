@@ -35,8 +35,8 @@ class XMPPClient(aioxmpp.Client):
         except aioxmpp.errors.XMPPError as e:
             print(f"Error al iniciar sesión: {e}")
 
-    def on_stream_established(self, stream):
-        asyncio.create_task(self.start())
+    async def on_stream_established(self, stream):
+        await self.start()
 
     def on_stanza_received(self, stream, stanza):
         if isinstance(stanza, aioxmpp.Message):
